@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#261b15">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кейс: витрина курсов для онлайн-школы причёсок</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="preload" as="image" href="a/s_home@2.webp" imagesrcset="a/s_home@1.webp 1x, a/s_home@2.webp 2x, a/s_home@3.webp 3x"><link rel="preload" as="image" href="a/s_buy@2.webp" imagesrcset="a/s_buy@1.webp 1x, a/s_buy@2.webp 2x, a/s_buy@3.webp 3x"><link rel="preload" as="image" href="a/s_prog@2.webp" imagesrcset="a/s_prog@1.webp 1x, a/s_prog@2.webp 2x, a/s_prog@3.webp 3x"><link rel="preload" as="image" href="a/s_overlay@2.webp" imagesrcset="a/s_overlay@1.webp 1x, a/s_overlay@2.webp 2x, a/s_overlay@3.webp 3x"><link rel="preload" as="image" href="a/s_success@2.webp" imagesrcset="a/s_success@1.webp 1x, a/s_success@2.webp 2x, a/s_success@3.webp 3x"><link rel="preload" as="image" href="a/s_owned@2.webp" imagesrcset="a/s_owned@1.webp 1x, a/s_owned@2.webp 2x, a/s_owned@3.webp 3x">
+<style>
+:root{
+  --bg:#261b15; --bg2:#2e2119; --ink:#F4ECE2; --mut:#C9B8A6; --dim:#8f7d6c;
+  --gold:#E7C9A5; --wine:#8a2c36; --wine2:#5a1520; --line:rgba(244,236,226,.12);
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;
+  font-size:16px;line-height:1.5;letter-spacing:-.01em;overflow-x:hidden}
+.wrap{max-width:480px;margin:0 auto;position:relative;overflow:hidden}
+h1,h2,h3,.num,.big,.ins b,.grid b,.bar .row b,.days .big,.quote q,.pull q{font-family:"SF Pro Display",-apple-system,BlinkMacSystemFont,Inter,system-ui,sans-serif}
+.k{display:block;font-size:13px;letter-spacing:-.005em;color:#E3D5C7;font-weight:500}
+.k::first-letter{text-transform:uppercase}
+h2{font-size:29px;line-height:1.04;font-weight:600;letter-spacing:-.026em;margin-top:12px;margin-bottom:4px;text-wrap:balance}
+h1::first-letter,h2::first-letter,h3::first-letter{text-transform:uppercase}
+p,li,summary,.cap,.feat span,.fit div,.steps div,.ba .r>div,q,.note{text-wrap:pretty}
+p{color:#F1E7DC;opacity:.86;margin-top:16px}
+q,.cap,h3,.cta p,.pull q{text-wrap:balance}
+p b{color:var(--ink);font-weight:600}
+section{position:relative;padding:88px 28px}
+section.tight{padding-top:44px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+html:not(.js) .rv,html:not(.js) .ph img.scr{opacity:1;transform:none}html:not(.js) .bar .tr i{width:78%}
+@media (prefers-reduced-motion:reduce){.rv,.bar .tr i,.stick{transition:none!important}.rv{opacity:1;transform:none}.scroll i{animation:none}}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* hero */
+.hero{min-height:100svh;padding:calc(48px + var(--sat)) 28px 40px;background:linear-gradient(180deg,rgba(38,27,21,0) 0,rgba(38,27,21,0) 110vw,rgba(38,27,21,.35) 190vw,var(--bg) 240vw),url(a/hero2.webp) 35% top/135% auto no-repeat,var(--bg)}
+.hero .k{opacity:.9}
+.hero h1{font-size:36px;line-height:.98;font-weight:600;letter-spacing:-.028em;margin-top:12px;text-wrap:balance}
+.hero .num{font-size:60px;font-weight:300;letter-spacing:-.035em;line-height:1;margin-top:24px;white-space:nowrap}
+.hero .num small{font-size:31px;margin-left:5px}
+.hero .sub{margin-top:10px;max-width:300px}
+.client{display:flex;align-items:center;gap:12px;margin-top:26px;padding:10px 16px 10px 10px;border-radius:999px;width:max-content;max-width:100%;
+  background:rgba(255,255,255,.07);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.client img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.client b{display:block;font-size:15px;font-weight:600}
+.client span{font-size:13px;color:var(--mut)}
+.hero .phwrap{display:flex;justify-content:center;margin-top:34px}
+.scroll{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:26px;color:var(--dim);font-size:13px}
+.scroll i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:sc 1.8s ease-in-out infinite}
+@keyframes sc{0%{transform:scaleY(.2);transform-origin:top;opacity:0}50%{opacity:1}100%{transform:scaleY(1);transform-origin:top;opacity:0}}
+
+/* iPhone 18 Pro */
+.ph{--w:270px!important;width:var(--w);aspect-ratio:1/2.0851;position:relative;flex-shrink:0;border-radius:calc(var(--w)*.165);padding:calc(var(--w)*.014);
+  background:linear-gradient(140deg,#d48a8f 0%,#8a2c36 18%,#5a1520 45%,#7a2430 75%,#c0767c 100%);
+  box-shadow:inset 0 0 0 1px rgba(255,235,235,.45),0 40px 70px -26px rgba(0,0,0,.85),0 16px 30px -18px rgba(0,0,0,.6)}
+.ph .in{position:absolute;inset:calc(var(--w)*.014);border-radius:calc(var(--w)*.152);background:#030303;padding:calc(var(--w)*.02);overflow:hidden}
+.ph img.scr{width:100%;height:100%;border-radius:calc(var(--w)*.132);display:block;object-fit:cover;object-position:top;background:#efe9e1;opacity:0;transition:opacity .45s ease}
+.ph img.scr.ld{opacity:1}
+.ph .in{background:#030303}
+.ph .isl{position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--w)*.048);width:21%;height:calc(var(--w)*.076);border-radius:999px;background:#000}
+.ph .gl{position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,rgba(255,255,255,.10),rgba(255,255,255,0) 28%);pointer-events:none}
+.ph .bt{position:absolute;width:3px;border-radius:2px;background:linear-gradient(90deg,#c0767c,#5a1520)}
+
+/* pain */
+.quote{position:relative;margin-top:26px;padding:22px 22px 20px;border-radius:24px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line)}
+.quote::before{content:"“";position:absolute;top:-16px;left:18px;font-size:70px;line-height:1;color:#B8505E;font-weight:300;font-family:"SF Pro Display",-apple-system,sans-serif}
+.quote q{quotes:none;display:block;font-size:21px;line-height:1.16;color:var(--ink);font-weight:500;letter-spacing:-.03em}
+.quote cite{display:flex;align-items:center;gap:10px;margin-top:14px;font-style:normal;font-size:14px;color:var(--mut)}
+.quote cite img{width:28px;height:28px;border-radius:50%}
+.lockrow{display:flex;align-items:center;gap:16px;margin-top:22px}
+.lockrow img{width:96px;flex-shrink:0}
+.lockrow p{margin:0}
+
+/* changes */
+.feat{margin-top:30px;display:grid;gap:14px}
+.feat div{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:20px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--line)}
+.feat em{font-style:normal;flex-shrink:0;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:600;color:#261b15;background:linear-gradient(180deg,#f1d9bb,#c9a57c)}
+.feat span{font-size:16px;line-height:1.42;color:var(--ink)}
+.feat span small{display:block;font-size:14px;color:var(--mut);margin-top:3px}
+.duo{display:flex;justify-content:center;gap:14px;margin-top:34px}
+
+
+/* path carousel */
+.path{background:transparent}
+.rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 28px 64px;margin:0 -28px -50px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.step{scroll-snap-align:center;flex-shrink:0;width:282px;display:flex;flex-direction:column;align-items:center}
+
+.step .cap{margin-top:16px;text-align:center;font-size:15px;line-height:1.35;color:var(--ink)}
+.step .cap b{display:block;font-size:13px;color:#E7C9A5;font-weight:600;margin-bottom:3px}
+.step .cap b::first-letter,.ba .lab::first-letter{text-transform:uppercase}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(244,236,226,.25);transition:.3s}
+.dots i.on{width:18px;border-radius:3px;background:var(--gold)}
+
+/* fear */
+.fear{background:url(a/mid2.webp) center/cover no-repeat}
+.fear::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(38,27,21,.55) 25%,rgba(38,27,21,.6) 75%,var(--bg) 100%)}
+.fear>*{position:relative}
+.days{display:flex;align-items:baseline;gap:12px;margin-top:26px}
+.days .big{font-size:76px;font-weight:300;letter-spacing:-.05em;line-height:1}
+.days>span{color:var(--mut);font-size:15px;line-height:1.35}
+
+/* results */
+.res .big{font-size:58px;font-weight:300;letter-spacing:-.045em;line-height:1;margin-top:22px;white-space:nowrap}
+.res .lead{margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.grid div{padding:18px;border-radius:20px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--line)}
+.grid b{display:block;font-size:36px;font-weight:300;letter-spacing:-.04em;line-height:1}
+.grid span{display:block;margin-top:8px;font-size:13px;line-height:1.3;color:var(--mut)}
+.bar{margin-top:22px;padding:18px;border-radius:20px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--line)}
+.bar .row{display:flex;justify-content:space-between;align-items:baseline}
+.bar .row b{font-size:36px;font-weight:300;letter-spacing:-.04em}
+.bar .row>span{font-size:13px;color:var(--mut);text-align:right;max-width:60%}
+.bar .tr{height:8px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:12px;overflow:hidden}
+.bar .tr i{display:block;height:100%;width:0;border-radius:4px;background:linear-gradient(90deg,#c9a57c,#f1d9bb);transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.bar p{font-size:14px;margin-top:12px}
+.note{font-size:12px;color:var(--dim);margin-top:14px}
+
+/* notifications */
+.nstack{position:relative;display:flex;flex-direction:column;gap:10px;margin-top:56px}
+.nstack::before{content:"";position:absolute;left:0;right:0;top:-10px;bottom:-10px;background:radial-gradient(60% 70% at 35% 40%,rgba(214,150,128,.45),rgba(140,60,64,.22) 55%,transparent);filter:blur(36px);z-index:-1}
+.nt{display:flex;gap:12px;align-items:center;padding:13px 14px;border-radius:26px;background:rgba(255,255,255,.075);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.5),inset -1px -1px 0 rgba(255,255,255,.15),0 16px 30px -16px rgba(0,0,0,.6)}
+.nt img{width:42px;height:42px;border-radius:50%}
+.nt div{flex:1;min-width:0}
+.nt .h{display:flex;justify-content:space-between;font-size:14px}
+.nt .h b{font-weight:600}.nt .h span{color:rgba(255,255,255,.55);font-size:12px}
+.nt .s{font-size:14px;color:#fff;margin-top:1px}
+.nt:nth-child(2){width:94%;margin:0 auto;opacity:.9}.nt:nth-child(3){width:88%;margin:0 auto;opacity:.75}
+
+/* pull */
+.pull{text-align:center;padding-top:88px;padding-bottom:88px}
+.pull .bubble{width:150px;margin:0 auto 10px}
+.pull q{quotes:none;display:block;font-size:26px;line-height:1.16;font-weight:500;letter-spacing:-.03em;color:var(--ink);text-wrap:balance}
+.pull cite{display:block;margin-top:16px;font-style:normal;color:var(--mut);font-size:14px}
+.together{margin-top:30px;padding:18px 20px;border-radius:22px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);text-align:left}
+.together b{display:block;font-size:17px;color:var(--ink)}
+.together a{display:inline-block;margin-top:10px;color:var(--gold);font-size:15px;text-decoration:none;border-bottom:1px solid rgba(231,201,165,.4)}
+
+/* cta */
+.cta{padding:130px 24px calc(48px + var(--sab));text-align:center;background:linear-gradient(180deg,var(--bg),rgba(38,27,21,.5) 40%,rgba(38,27,21,.85)),url(a/cta.webp) center bottom/cover no-repeat}
+.cta h2{font-size:32px;position:relative;z-index:1}
+.cta p{max-width:320px;margin-left:auto;margin-right:auto}
+.btn{display:inline-block;margin-top:24px;padding:18px 30px;border-radius:999px;text-decoration:none;color:#F7EDE4;font-size:16px;font-weight:600;letter-spacing:-.01em;font-family:"SF Pro Display",-apple-system,sans-serif;
+  background:linear-gradient(180deg,#9a3442,#6e1f2b);box-shadow:0 18px 40px -12px rgba(110,31,43,.75),inset 0 1px 0 rgba(255,255,255,.2)}
+.btn:active{transform:scale(.98)}
+.sign{margin-top:36px;font-size:14px;color:var(--mut)}
+.sign b{color:var(--ink);font-weight:600}
+.obj{position:absolute;pointer-events:none}
+/* tl;dr */
+.tldr{margin-top:28px;padding:20px;border-radius:24px;background:rgba(255,255,255,.06);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.tldr .k{font-size:12px}
+.tldr ul{list-style:none;margin-top:12px;display:grid;gap:10px}
+.tldr li{display:grid;grid-template-columns:74px 1fr;gap:10px;font-size:15px;line-height:1.38;color:var(--ink)}
+.tldr li b{color:#E7C9A5;font-weight:600;font-size:14px;padding-top:1px}
+.tldr li b::first-letter{text-transform:uppercase}
+.meta{display:flex;flex-wrap:nowrap;gap:min(6px,1.2vw);margin-top:16px}
+.meta span{white-space:nowrap;font-size:min(12.5px,3vw);letter-spacing:-.01em;color:var(--mut);padding:7px min(10px,2.3vw);border-radius:999px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line)}
+/* before/after */
+.ba{margin-top:26px;border-radius:22px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);background:rgba(255,255,255,.035)}
+.ba .r{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.ba .r:first-child{border-top:0}
+.ba .r>div{padding:14px 16px;font-size:14.5px;line-height:1.35}
+.ba .r>div:first-child{color:var(--mut);border-right:1px solid var(--line)}
+.ba .r>div:last-child{color:var(--ink)}
+.ba .hd>div{font-size:14px;font-weight:600;padding-top:16px;padding-bottom:12px}
+.ba .hd>div::first-letter{text-transform:uppercase}
+.ba .hd>div:first-child{color:var(--dim)}.ba .hd>div:last-child{color:var(--gold)}
+.ba .lab{display:block;font-size:12px;color:var(--dim);margin-bottom:3px}
+/* process */
+.proc{margin-top:32px;position:relative;display:grid;gap:28px;padding-left:34px}
+.proc::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),rgba(231,201,165,.08))}
+.proc div{position:relative}
+.proc div::before{content:"";position:absolute;left:-30px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--bg);box-shadow:0 0 0 2px var(--gold)}
+.proc b{display:block;font-size:13px;color:#E7C9A5;font-weight:600}
+.proc b::first-letter{text-transform:uppercase}
+.proc h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-top:3px}
+.proc p{font-size:15px;margin-top:5px}
+/* insights */
+.ins{margin-top:30px;display:grid;gap:14px}
+.ins div{padding:20px;border-radius:22px;background:linear-gradient(160deg,rgba(138,44,54,.28),rgba(255,255,255,.03));box-shadow:inset 0 0 0 1px rgba(231,201,165,.16)}
+.ins b{display:block;font-family:-apple-system,"SF Pro Display",Inter,sans-serif;font-size:36px;font-weight:300;color:var(--gold);line-height:1}
+.ins h3{font-size:18px;font-weight:600;letter-spacing:-.02em;margin-top:10px}
+.ins p{font-size:15px;margin-top:6px}
+/* fit */
+.fit{margin-top:28px;display:grid;gap:14px}
+.fit div{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.4;color:var(--ink)}
+.fit i{flex-shrink:0;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-style:normal;font-size:14px;color:#261b15;background:linear-gradient(180deg,#f1d9bb,#c9a57c);margin-top:1px}
+/* faq */
+.faq{margin-top:28px;display:grid;gap:12px}
+.faq details{border-radius:18px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:16px 46px 16px 18px;font-size:16px;font-weight:500;position:relative;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:22px;font-weight:300;color:var(--gold);transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{margin:0;padding:0 18px 16px;font-size:15px}
+/* sticky cta */
+.stick{position:fixed;left:50%;bottom:calc(14px + var(--sab));transform:translate(-50%,140%);z-index:20;transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  padding:15px 26px;border-radius:999px;text-decoration:none;color:#F7EDE4;font-size:16px;font-weight:600;white-space:nowrap;
+  background:linear-gradient(180deg,#9a3442,#6e1f2b);box-shadow:0 14px 34px -10px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.2)}
+.stick.show{transform:translate(-50%,0)}
+.tg .stick{display:none}
+/* card-style section backgrounds */
+.bgA,.bgB,.bgC,.bgD{background-repeat:no-repeat;background-size:100% 100%,cover;background-position:center,center top}
+.bgA{background-image:linear-gradient(180deg,var(--bg) 0,rgba(38,27,21,.15) 14%,rgba(38,27,21,.25) 80%,var(--bg) 100%),url(a/secA.webp)}
+.bgB{background-size:100% 100%,140% auto!important;background-position:center,30% -60px!important;background-image:linear-gradient(180deg,var(--bg) 0,rgba(38,27,21,.35) 12%,rgba(38,27,21,.45) 85%,var(--bg) 100%),url(a/secB.webp)}
+.bgC{background-image:linear-gradient(180deg,var(--bg) 0,rgba(38,27,21,.1) 15%,rgba(38,27,21,.2) 85%,var(--bg) 100%),url(a/secC.webp)}
+.bgD{background-image:linear-gradient(180deg,var(--bg) 0,rgba(38,27,21,.5) 14%,rgba(38,27,21,.55) 86%,var(--bg) 100%),url(a/secD.webp)}
+.o3{position:absolute;pointer-events:none;z-index:0}
+section>*:not(.o3):not(.obj),header>*:not(.o3):not(.obj){position:relative;z-index:1}
+/* review */
+.rev{margin-top:26px;padding:18px;border-radius:24px;background:rgba(255,255,255,.07);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 1px 1px 0 rgba(255,255,255,.35),inset 0 0 0 1px rgba(255,255,255,.1),0 24px 40px -24px rgba(0,0,0,.7)}
+.rev .top{display:flex;gap:12px;align-items:center}
+.rev .top img{width:44px;height:44px;border-radius:50%}
+.rev .top b{display:block;font-size:16px;font-weight:600}
+.rev .top span{font-size:13px;color:var(--mut)}
+.rev .tags{margin-top:12px;font-size:14px;color:#8fb4e8}
+.rev ul{list-style:none;margin-top:10px;display:grid;gap:7px}
+.rev li{font-size:15px;line-height:1.38;color:var(--ink);padding-left:18px;position:relative}
+.rev li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.rev .rq{margin-top:10px;font-size:15.5px;line-height:1.4;color:var(--ink);opacity:1}
+.rev a{display:block;margin-top:16px;text-align:center;padding:14px;border-radius:16px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+/* author + how we start */
+.me{display:flex;gap:16px;align-items:flex-start;margin-top:22px}
+.me .ini{flex-shrink:0;width:64px;height:64px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px rgba(231,201,165,.5);display:grid;place-items:center;font-family:"SF Pro Display",-apple-system,sans-serif;font-weight:600;font-size:20px;color:#261b15;background:linear-gradient(160deg,#f1d9bb,#c9a57c)}
+.me p{margin-top:0}
+.meh{display:flex;align-items:center;gap:16px;margin-top:16px}
+.meh img{width:72px;height:72px;border-radius:50%;flex-shrink:0;box-shadow:0 0 0 2px rgba(231,201,165,.45),0 14px 28px -12px rgba(0,0,0,.7)}
+.meh h2{margin:0}
+.meh span{display:block;margin-top:6px;font-size:14px;color:var(--mut)}
+.steps{margin-top:22px;display:grid;gap:12px;counter-reset:st}
+.steps div{display:flex;gap:14px;align-items:center;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px var(--line);font-size:15.5px;line-height:1.35;color:var(--ink)}
+.steps div::before{counter-increment:st;content:counter(st);flex-shrink:0;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:600;color:#261b15;background:linear-gradient(180deg,#f1d9bb,#c9a57c)}
+/* Liquid Glass – iOS 26/27 */
+.grid div,.bar,.feat div,.quote,.ba,.ins div,.faq details,.steps div,.together,.rev,.tldr,.client,.meta span,.nt{
+  position:relative;isolation:isolate;transform:translateZ(0);
+  background:linear-gradient(155deg,rgba(255,250,244,.16) 0%,rgba(255,250,244,.06) 38%,rgba(255,250,244,.03) 62%,rgba(255,250,244,.09) 100%) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
+  box-shadow:inset 1.5px 1.5px 0 -.5px rgba(255,255,255,.55),inset -1px -1px 0 -.5px rgba(255,255,255,.28),inset 0 0 0 1px rgba(255,255,255,.08),inset 0 -14px 24px -18px rgba(255,236,214,.35),0 22px 40px -22px rgba(0,0,0,.75) !important}
+.grid div::before,.bar::before,.feat div::before,.ins div::before,.together::before,.rev::before,.tldr::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;
+  background:radial-gradient(120% 60% at 15% 0%,rgba(255,255,255,.18),transparent 55%),radial-gradient(80% 50% at 100% 100%,rgba(255,226,196,.10),transparent 60%)}
+.ins div{background:linear-gradient(155deg,rgba(255,214,200,.16),rgba(138,44,54,.14) 45%,rgba(255,250,244,.05)) !important}
+hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:0 24px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="k rv">кейс · витрина курсов в&nbsp;телеге</div>
+  <h1 class="rv d1">собрал стилисту все&nbsp;курсы в&nbsp;одно приложение&nbsp;– и&nbsp;продажи пошли без&nbsp;переписок</h1>
+  <div class="num rv d2"><span data-count="680390">680&nbsp;390</span><small>₽</small></div>
+  <p class="sub rv d2">столько принесли Дарье новые подписчики за&nbsp;5&nbsp;месяцев после запуска</p>
+  <div class="client rv d3"><img src="a/ava.webp" alt=""><div><b>Дарья Новикова</b><span>онлайн-школа причёсок · 45к в&nbsp;инсте</span></div></div>
+  <div class="phwrap rv d4"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_home@2.webp" srcset="a/s_home@1.webp 1x, a/s_home@2.webp 2x, a/s_home@3.webp 3x" alt="Витрина курсов"><div class="isl"></div></div></div></div>
+  <div class="tldr rv">
+    <div class="k">если&nbsp;коротко</div>
+    <ul>
+      <li><b>было</b>воронка продавала один курс, остальные&nbsp;– руками в&nbsp;личке</li>
+      <li><b>сделал</b>витрину всех курсов прямо в&nbsp;боте&nbsp;– оплата и&nbsp;доступ без&nbsp;Дарьи</li>
+      <li><b>итог</b>680&nbsp;390&nbsp;₽ с&nbsp;новых подписчиков и&nbsp;309&nbsp;оплат на&nbsp;автомате</li>
+    </ul>
+  </div>
+  <div class="meta rv"><span>10&nbsp;дней до&nbsp;запуска</span><span>5&nbsp;курсов</span><span>работаем дальше</span></div>
+  <div class="scroll"><i></i>листай</div>
+</header>
+
+<!-- CLIENT -->
+<section class="bgA">
+  <div class="k rv">кто такая&nbsp;Дарья</div>
+  <h2 class="rv d1">сильный эксперт с&nbsp;живой аудиторией</h2>
+  <p class="rv d2">Дарья&nbsp;– стилист по&nbsp;причёскам, <b>11&nbsp;лет в&nbsp;профессии</b>, своя онлайн-школа для&nbsp;мастеров</p>
+  <p class="rv d2">в&nbsp;инсте <b>45к</b> подписчиков, в&nbsp;боте&nbsp;около <b>6&nbsp;000</b> человек&nbsp;– пришли сами, по&nbsp;кодовым словам из&nbsp;рилсов</p>
+  <p class="rv d2">то&nbsp;есть трафик есть, контент заходит, люди греются. не&nbsp;хватало одного&nbsp;– места, где все&nbsp;курсы видно и&nbsp;можно сразу купить</p>
+</section>
+
+<!-- PAIN -->
+<section class="tight">
+  <div class="k rv">что&nbsp;мешало</div>
+  <h2 class="rv d1">курсов несколько, а&nbsp;продавался&nbsp;один</h2>
+  <div class="quote rv d2"><q>Моя воронка работала, но&nbsp;продавала один курс, а&nbsp;предложить остальные было целым квестом: скидывала их&nbsp;вручную, и&nbsp;каждый раз&nbsp;одно и&nbsp;то&nbsp;же&nbsp;«а&nbsp;что&nbsp;ещё есть?»&nbsp;🙈</q><cite><img src="a/ava.webp" alt="">Дарья</cite></div>
+  <div class="lockrow rv d3"><img src="a/lock3d.webp" alt="" style="width:160px;margin-left:-14px"><p>плюс флагман HAIR BAZA&nbsp;стоил <b>10&nbsp;000&nbsp;₽</b> и&nbsp;продавался только целиком. для&nbsp;новенькой это&nbsp;дорого как&nbsp;первая покупка</p></div>
+  <p class="rv">и&nbsp;каждая продажа держалась на&nbsp;Дарье: ответить, скинуть ссылку, проверить оплату, выдать доступ. чем&nbsp;больше людей&nbsp;– тем меньше времени на&nbsp;всё&nbsp;остальное</p>
+</section>
+
+<!-- TASK -->
+<section class="tight">
+  <div class="k rv">задача</div>
+  <h2 class="rv d1">чтобы&nbsp;курсы продавались&nbsp;сами</h2>
+  <div class="fit">
+    <div class="rv d1"><i>1</i>показать все&nbsp;курсы в&nbsp;одном месте&nbsp;– красиво и&nbsp;понятно</div>
+    <div class="rv d2"><i>2</i>дать вход в&nbsp;дорогой курс с&nbsp;маленького&nbsp;чека</div>
+    <div class="rv d3"><i>3</i>убрать Дарью из&nbsp;оплат и&nbsp;доступов</div>
+    <div class="rv d4"><i>4</i>не&nbsp;трогать воронку, которая уже&nbsp;приводит&nbsp;людей</div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="tight">
+  <img class="o3 rv" src="a/phone3d.webp" alt="" style="width:88px;right:16px;top:-30px">
+  <div class="k rv">что&nbsp;я&nbsp;сделал</div>
+  <h2 class="rv d1" style="max-width:240px">витрина прямо в&nbsp;боте</h2>
+  <p class="rv d2">аудитория Дарьи и&nbsp;так&nbsp;сидит в&nbsp;телеге. уводить её&nbsp;на&nbsp;сайт&nbsp;– значит терять людей на&nbsp;переходе</p>
+  <p class="rv d2">поэтому витрина открывается одной кнопкой прямо в&nbsp;боте и&nbsp;выглядит как&nbsp;обычное приложение</p>
+  <div class="feat">
+    <div class="rv d1"><em>1</em><span>все&nbsp;курсы на&nbsp;одном экране<small>обложки, описания, цены от&nbsp;1&nbsp;690 до&nbsp;10&nbsp;000&nbsp;₽</small></span></div>
+    <div class="rv d2"><em>2</em><span>дорогой курс можно начать с&nbsp;одного&nbsp;урока<small>уроки HAIR BAZA по&nbsp;490&nbsp;₽&nbsp;– или&nbsp;весь курс целиком</small></span></div>
+    <div class="rv d3"><em>3</em><span>оплата в&nbsp;пару касаний<small>бот сам кидает ссылку под&nbsp;нужный курс или&nbsp;урок</small></span></div>
+    <div class="rv d4"><em>4</em><span>доступ приходит&nbsp;сам<small>за&nbsp;курс&nbsp;– инвайт в&nbsp;закрытый канал, за&nbsp;урок&nbsp;– видео прямо в&nbsp;бота</small></span></div>
+    <div class="rv d1"><em>5</em><span>купленное отмечается в&nbsp;витрине<small>дважды за&nbsp;один урок никто не&nbsp;заплатит</small></span></div>
+    <div class="rv d2"><em>6</em><span>всё&nbsp;о&nbsp;курсе&nbsp;– в&nbsp;карточке<small>что&nbsp;внутри и&nbsp;срок доступа, вопросы в&nbsp;личку закончились</small></span></div>
+    <div class="rv d3"><em>7</em><span>Дарья видит каждую оплату<small>уведомления о&nbsp;покупках и&nbsp;вопросах&nbsp;– в&nbsp;отдельный&nbsp;чат</small></span></div>
+  </div>
+  <div class="rail rv" id="rail2"><div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_buy@2.webp" srcset="a/s_buy@1.webp 1x, a/s_buy@2.webp 2x, a/s_buy@3.webp 3x" alt="Карточка курса"><div class="isl"></div></div></div><div class="cap">карточка курса&nbsp;– что&nbsp;внутри и&nbsp;цена</div></div><div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_prog@2.webp" srcset="a/s_prog@1.webp 1x, a/s_prog@2.webp 2x, a/s_prog@3.webp 3x" alt="Уроки по&nbsp;490&nbsp;₽"><div class="isl"></div></div></div><div class="cap">программа&nbsp;– любой урок за&nbsp;490&nbsp;₽</div></div></div>
+  <div class="dots" id="dots2"><i class="on"></i><i></i></div>
+</section>
+
+<!-- PATH -->
+<section class="path">
+  <img class="o3 rv" src="a/key3d.webp" alt="" style="width:128px;right:-12px;top:-40px">
+  <div class="k rv">путь ученицы</div>
+  <h2 class="rv d1">от&nbsp;рилса до&nbsp;урока&nbsp;– меньше минуты</h2>
+  <div class="rail" id="rail">
+    <div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_home@2.webp" srcset="a/s_home@1.webp 1x, a/s_home@2.webp 2x, a/s_home@3.webp 3x" alt=""><div class="isl"></div></div></div><div class="cap"><b>шаг&nbsp;1</b>пишет слово под&nbsp;рилсом и&nbsp;открывает витрину</div></div>
+    <div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_buy@2.webp" srcset="a/s_buy@1.webp 1x, a/s_buy@2.webp 2x, a/s_buy@3.webp 3x" alt=""><div class="isl"></div></div></div><div class="cap"><b>шаг&nbsp;2</b>выбирает курс или&nbsp;урок</div></div>
+    <div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_overlay@2.webp" srcset="a/s_overlay@1.webp 1x, a/s_overlay@2.webp 2x, a/s_overlay@3.webp 3x" alt=""><div class="isl"></div></div></div><div class="cap"><b>шаг&nbsp;3</b>получает ссылку на&nbsp;оплату</div></div>
+    <div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_success@2.webp" srcset="a/s_success@1.webp 1x, a/s_success@2.webp 2x, a/s_success@3.webp 3x" alt=""><div class="isl"></div></div></div><div class="cap"><b>шаг&nbsp;4</b>оплатила&nbsp;– доступ пришёл&nbsp;сам</div></div>
+    <div class="step"><div class="ph"><div class="in"><img class="scr" width="252" height="545" src="a/s_owned@2.webp" srcset="a/s_owned@1.webp 1x, a/s_owned@2.webp 2x, a/s_owned@3.webp 3x" alt=""><div class="isl"></div></div></div><div class="cap"><b>шаг&nbsp;5</b>курс отмечен «открыт»</div></div>
+  </div>
+  <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section>
+  <div class="k rv">до&nbsp;и&nbsp;после</div>
+  <h2 class="rv d1">что&nbsp;поменялось в&nbsp;продажах</h2>
+  <div class="ba rv d2">
+    <div class="r hd"><div>было</div><div>стало</div></div>
+    <div class="r"><div><span class="lab">курсы</span>по&nbsp;одному в&nbsp;личке</div><div><span class="lab">курсы</span>все&nbsp;в&nbsp;одной витрине</div></div>
+    <div class="r"><div><span class="lab">вход</span>10&nbsp;000&nbsp;₽&nbsp;сразу</div><div><span class="lab">вход</span>от&nbsp;490&nbsp;₽ за&nbsp;урок</div></div>
+    <div class="r"><div><span class="lab">оплата</span>ссылка руками</div><div><span class="lab">оплата</span>бот кидает&nbsp;сам</div></div>
+    <div class="r"><div><span class="lab">доступ</span>выдавала&nbsp;Дарья</div><div><span class="lab">доступ</span>приходит за&nbsp;минуту</div></div>
+    <div class="r"><div><span class="lab">вопросы</span>«а&nbsp;что&nbsp;ещё есть?»</div><div><span class="lab">вопросы</span>ответы в&nbsp;карточке</div></div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="fear">
+  <img class="o3 rv" src="a/watch3d.webp" alt="" style="width:100px;right:12px;top:-8px">
+  <div class="k rv">как&nbsp;работали</div>
+  <h2 class="rv d1">10&nbsp;дней от&nbsp;идеи до&nbsp;запуска</h2>
+  <div class="proc">
+    <div class="rv d1"><b>старт</b><h3>разобрал воронку</h3><p>посмотрел, откуда приходят люди и&nbsp;что&nbsp;покупают. воронку Дарьи не&nbsp;трогал&nbsp;– витрину встроил прямо в&nbsp;неё</p></div>
+    <div class="rv d2"><b>дни&nbsp;1–3</b><h3>прототип на&nbsp;кнопках</h3><p>быстро собрал простую версию в&nbsp;боте, чтобы&nbsp;Дарья потыкала руками, а&nbsp;не&nbsp;представляла по&nbsp;описанию</p></div>
+    <div class="rv d3"><b>день&nbsp;3</b><h3>переехали в&nbsp;приложение</h3><p>стало понятно&nbsp;– 30+ уроков на&nbsp;кнопках не&nbsp;полистаешь) решили делать нормальную витрину</p></div>
+    <div class="rv d4"><b>дни&nbsp;4–10</b><h3>сборка, оплаты, доступы</h3><p>каталог, оплата через Продамус, автодоступы, связка с&nbsp;ботом. Дарья кидала правки голосовыми</p></div>
+    <div class="rv d1"><b>день&nbsp;10</b><h3>запуск</h3><p>через два дня под&nbsp;рилсом&nbsp;– «хочу, хочу,&nbsp;хочу»</p></div>
+    <div class="rv d2"><b>дальше</b><h3>растём</h3><p>новые курсы заводятся без&nbsp;переделок&nbsp;– 9 июня за&nbsp;один день добавили сразу&nbsp;два</p></div>
+  </div>
+  <div class="quote rv"><q>Я&nbsp;не&nbsp;технарь и&nbsp;думала, что&nbsp;приложение&nbsp;– это&nbsp;долго и&nbsp;сложно, а&nbsp;оказалось наоборот) Я&nbsp;только присылала правки голосовыми&nbsp;😅</q><cite><img src="a/ava.webp" alt="">Дарья</cite></div>
+</section>
+
+<!-- RESULTS -->
+<section class="res bgB">
+  <div class="k rv">результат за&nbsp;5&nbsp;месяцев</div>
+  <div class="big rv d1"><span data-count="680390">680&nbsp;390</span>&nbsp;₽</div>
+  <p class="lead rv d1">выручка с&nbsp;новых подписчиков</p>
+  <div class="grid">
+    <div class="rv d1"><b data-count="284">284</b><span>новых покупателей</span></div>
+    <div class="rv d2"><b data-count="309">309</b><span>оплат без&nbsp;участия&nbsp;Дарьи</span></div>
+    <div class="rv d3"><b data-count="21">21</b><span>вернулись за&nbsp;второй покупкой</span></div>
+    <div class="rv d4"><b>3 →&nbsp;5</b><span>курсов в&nbsp;витрине</span></div>
+  </div>
+  <div class="bar rv">
+    <div class="row"><b><span data-count="78">78</span>%</b><span>продаж&nbsp;– курсы и&nbsp;уроки до&nbsp;2&nbsp;000&nbsp;₽</span></div>
+    <div class="tr"><i data-w="78"></i></div>
+    <p>те, кому 10к сразу было много, <b>теперь заходят с&nbsp;маленького&nbsp;чека</b>&nbsp;– и&nbsp;возвращаются за&nbsp;следующим</p>
+  </div>
+  <div class="nstack rv">
+    <img class="o3" src="a/bell3d.webp" alt="" style="width:90px;right:-18px;top:-74px;z-index:2">
+    <div class="nt"><img src="a/bot.webp" alt=""><div><div class="h"><b>Novikova_hair_bot</b><span>сейчас</span></div><div class="s">Оплата прошла успешно&nbsp;✅</div><div class="s">TREND hairstyles · 1&nbsp;990&nbsp;₽</div></div></div>
+    <div class="nt"><img src="a/bot.webp" alt=""><div><div class="h"><b>Novikova_hair_bot</b><span>3&nbsp;мин&nbsp;назад</span></div><div class="s">Оплата прошла успешно&nbsp;✅</div><div class="s">Собранные причёски · 1&nbsp;790&nbsp;₽</div></div></div>
+    <div class="nt"><img src="a/bot.webp" alt=""><div><div class="h"><b>Novikova_hair_bot</b><span>12&nbsp;мин&nbsp;назад</span></div><div class="s">Оплата прошла успешно&nbsp;✅</div><div class="s">HAIR BAZA, урок «Сёрф-локоны» · 490&nbsp;₽</div></div></div>
+  </div>
+  <div class="note rv">считаю только тех, кто впервые пришёл в&nbsp;бота после запуска витрины. старая база и&nbsp;другие продукты сюда не&nbsp;входят&nbsp;– так&nbsp;что&nbsp;это&nbsp;нижняя граница</div>
+</section>
+
+<!-- PULL -->
+<section class="pull">
+  <img class="bubble rv" src="a/bubble3d.webp" alt="">
+  <q class="rv d1">Через два дня после запуска выложила рилс, а&nbsp;в&nbsp;комментах «хочу, хочу, хочу», и&nbsp;люди покупают сами&nbsp;😍</q>
+  <cite class="rv d2">Дарья Новикова</cite>
+  <div class="rev rv d3" style="text-align:left">
+    <div class="top"><img src="a/ava.webp" alt=""><div><b>Дарья Новикова</b><span>оставила отзыв в&nbsp;«Мари про&nbsp;отзывы»</span></div></div>
+    <div class="tags">#положительныйотзыв #техспец</div>
+    <p class="rq">«Кирилл взял на&nbsp;себя всё: каталог, оплаты через Prodamus, автодоступы и&nbsp;связку с&nbsp;воронкой»</p>
+    <p class="rq">«Если&nbsp;продажи держатся на&nbsp;ручных переписках или&nbsp;вам просто нужен толковый техспец по&nbsp;ботам и&nbsp;приложениям&nbsp;– пишите Кириллу. Рекомендую от&nbsp;души&nbsp;🫶»</p>
+    <a href="https://t.me/mari_otzyv/123372" data-tg>читать отзыв целиком&nbsp;→</a>
+  </div>
+  <div class="together rv" style="text-align:left"><b>работаем вместе с&nbsp;весны и&nbsp;до&nbsp;сих пор&nbsp;🤝</b><p style="margin-top:6px;font-size:15px">рассылки, новые воронки, дожим брошенных оплат и&nbsp;новые курсы в&nbsp;витрине&nbsp;– всё&nbsp;через&nbsp;меня</p></div>
+</section>
+
+<!-- INSIGHTS -->
+<section class="bgD">
+  <div class="k rv">почему сработало</div>
+  <h2 class="rv d1">три вещи, которые подойдут и&nbsp;вам</h2>
+  <div class="ins">
+    <div class="rv d1"><b>01</b><h3>не&nbsp;уводить людей из&nbsp;телеги</h3><p>каждый переход на&nbsp;сайт&nbsp;– минус часть покупателей. витрина в&nbsp;боте открывается там, где человек уже&nbsp;есть</p></div>
+    <div class="rv d2"><b>02</b><h3>дать маленький вход рядом с&nbsp;дорогим</h3><p>урок за&nbsp;490&nbsp;₽ рядом с&nbsp;курсом за&nbsp;10к&nbsp;– и&nbsp;тот, кто не&nbsp;решился бы, покупает. а&nbsp;потом возвращается</p></div>
+    <div class="rv d3"><b>03</b><h3>убрать эксперта из&nbsp;оплаты</h3><p>когда ссылки и&nbsp;доступы работают сами, продажи идут ночью, в&nbsp;выходные и&nbsp;в&nbsp;отпуске. без&nbsp;переписок</p></div>
+  </div>
+</section>
+
+<!-- FIT -->
+<section class="bgC">
+  <div class="k rv">кому подойдёт</div>
+  <h2 class="rv d1">узнали себя хотя бы&nbsp;в&nbsp;одном пункте?</h2>
+  <div class="fit">
+    <div class="rv d1"><i>✓</i>курсов несколько, а&nbsp;продаётся в&nbsp;основном&nbsp;один</div>
+    <div class="rv d2"><i>✓</i>ссылки на&nbsp;оплату и&nbsp;доступы выдаёте руками</div>
+    <div class="rv d3"><i>✓</i>аудитория уже&nbsp;приходит в&nbsp;бота или&nbsp;канал в&nbsp;телеге</div>
+    <div class="rv d4"><i>✓</i>флагман дорогой, и&nbsp;хочется дать вход с&nbsp;маленького&nbsp;чека</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="tight">
+  <div class="k rv">частые вопросы</div>
+  <div class="faq">
+    <details class="rv"><summary>сколько времени займёт?</summary><p>у&nbsp;Дарьи&nbsp;– 10&nbsp;дней от&nbsp;прототипа до&nbsp;запуска. точный срок назову, когда посмотрю вашу воронку</p></details>
+    <details class="rv"><summary>придётся ломать мою воронку?</summary><p>нет. витрину встраиваю в&nbsp;то, что&nbsp;уже&nbsp;работает&nbsp;– кодовые слова, бот и&nbsp;рассылки остаются на&nbsp;месте</p></details>
+    <details class="rv"><summary>мне нужно разбираться в&nbsp;технике?</summary><p>нет) от&nbsp;вас&nbsp;– материалы и&nbsp;правки, хоть голосовыми. всё&nbsp;техническое беру на&nbsp;себя</p></details>
+    <details class="rv"><summary>а&nbsp;если&nbsp;курсов станет больше?</summary><p>новые курсы и&nbsp;уроки добавляются без&nbsp;переделок&nbsp;– у&nbsp;Дарьи два новых завели за&nbsp;один&nbsp;день</p></details>
+    <details class="rv"><summary>сколько стоит?</summary><p>зависит от&nbsp;количества курсов и&nbsp;того, что&nbsp;нужно связать. напишите «КЕЙС»&nbsp;– посмотрю вашу ситуацию и&nbsp;назову</p></details>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="tight">
+  <div class="k rv">кто&nbsp;делал</div>
+  <div class="meh rv d1"><img src="a/me.webp" alt="Кирилл"><div><h2>привет, я&nbsp;Кирилл</h2><span>боты и&nbsp;мини‑приложения в&nbsp;телеге</span></div></div>
+  <p class="rv d2">делаю под&nbsp;ключ – от&nbsp;идеи до&nbsp;запуска и&nbsp;поддержки. вся техника на&nbsp;мне, с&nbsp;вас только материалы и&nbsp;правки, хоть голосовыми)</p>
+  <div class="k rv" style="margin-top:44px">как&nbsp;начнём</div>
+  <div class="steps">
+    <div class="rv d1">пишете мне «КЕЙС» в&nbsp;личку</div>
+    <div class="rv d2">задаю пару вопросов про&nbsp;курсы и&nbsp;воронку</div>
+    <div class="rv d3">показываю, как&nbsp;витрина будет выглядеть у&nbsp;вас, и&nbsp;называю срок и&nbsp;цену</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <img class="obj" src="a/bag3d.webp" alt="" style="width:108px;right:2px;top:-16px">
+  <img class="obj" src="a/coins3d.webp" alt="" style="width:110px;left:0;top:10px">
+  <h2 class="rv">хотите так&nbsp;же?</h2>
+  <p class="rv d1">напишите «КЕЙС»&nbsp;– разберу вашу ситуацию и&nbsp;покажу, как&nbsp;такая витрина будет выглядеть у&nbsp;вас&nbsp;🤝</p>
+  <a class="btn rv d2" href="https://t.me/mkrnk_k?text=%D0%9A%D0%95%D0%99%D0%A1" data-tg>Написать «КЕЙС»</a>
+  <div class="sign rv d3"><img src="a/me.webp" alt="" style="width:44px;height:44px;border-radius:50%;display:block;margin:0 auto 10px"><b>Кирилл Макаренко</b> · телеграм-боты и&nbsp;приложения<br>@mkrnk_k</div>
+</section>
+
+</div>
+<a class="stick" id="stick" href="https://t.me/mkrnk_k?text=%D0%9A%D0%95%D0%99%D0%A1" data-tg>Написать «КЕЙС»</a>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  document.querySelectorAll('img.scr').forEach(function(i){ function ok(){ i.classList.add('ld'); } if (i.complete && i.naturalWidth) ok(); else { i.addEventListener('load', ok); i.addEventListener('error', ok); } });
+  // Telegram Mini App
+  var tg = window.Telegram && window.Telegram.WebApp;
+  var isTg = !!(tg && tg.initData);
+  if (isTg) {
+    function paint(){
+      try { tg.setHeaderColor('#261b15'); } catch(e){}
+      try { tg.setBackgroundColor('#261b15'); } catch(e){}
+      try { tg.setBottomBarColor && tg.setBottomBarColor('#261b15'); } catch(e){}
+    }
+    paint();
+    try { tg.ready(); tg.expand(); } catch(e){}
+    try { tg.onEvent('themeChanged', paint); } catch(e){}
+    document.querySelectorAll('a[data-tg]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (!tg.openTelegramLink) return;
+        e.preventDefault(); try { tg.openTelegramLink(a.href); } catch(err){ location.href = a.href; }
+      });
+    });
+  }
+  // sticky CTA / Telegram MainButton
+  var CTA='https://t.me/mkrnk_k?text=%D0%9A%D0%95%D0%99%D0%A1', stick=document.getElementById('stick');
+  if (isTg) {
+    document.documentElement.classList.add('tg');
+    try { tg.MainButton.setParams({text:'Написать «КЕЙС»', color:'#7a2430', text_color:'#F7EDE4'}); tg.MainButton.onClick(function(){ tg.openTelegramLink(CTA); }); } catch(e){}
+  }
+  var ctaSec = document.querySelector('.cta'), shown=false;
+  function upd(){
+    var past = window.scrollY > window.innerHeight*0.9, atEnd = ctaSec.getBoundingClientRect().top < window.innerHeight*0.85;
+    var want = past && !atEnd;
+    if (want === shown) return; shown = want;
+    if (isTg) { try { want ? tg.MainButton.show() : tg.MainButton.hide(); } catch(e){} }
+    else stick.classList.toggle('show', want);
+  }
+  window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd); upd();
+  // counters
+  var fmt = function(n){ return n.toLocaleString('ru-RU').replace(/,/g,' '); };
+  var still = !('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function count(el){
+    var to = +el.dataset.count;
+    if (still) { el.textContent = fmt(to); return; }
+    var t0 = null, dur = to > 1000 ? 1800 : 1100;
+    function step(t){ if(!t0) t0 = t; var p = Math.min(1,(t-t0)/dur); p = 1-Math.pow(1-p,3);
+      el.textContent = fmt(Math.round(to*p)); if(p<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function show(el){
+      el.classList.add('on');
+      el.querySelectorAll('[data-count]').forEach(count);
+      if (el.dataset.count) count(el);
+      el.querySelectorAll('[data-w]').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
+  }
+  var rvs = document.querySelectorAll('.rv');
+  if (still) { rvs.forEach(show); }
+  else {
+    document.querySelectorAll('[data-count]').forEach(function(el){ el.textContent = '0'; });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(!e.isIntersecting) return; show(e.target); io.unobserve(e.target); });
+    },{threshold:0, rootMargin:'0px'});
+    rvs.forEach(function(el){ io.observe(el); });
+  }
+  // carousel dots
+  function dotsFor(rid, did){
+    var rail = document.getElementById(rid), dots = document.querySelectorAll('#'+did+' i');
+    if (!rail || !dots.length) return;
+    rail.addEventListener('scroll', function(){
+      var st = rail.children[1] ? rail.children[1].offsetLeft - rail.children[0].offsetLeft : 296;
+      var i = Math.round(rail.scrollLeft / st);
+      if (rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4) i = dots.length - 1;
+      dots.forEach(function(d,k){ d.classList.toggle('on', k === Math.min(i, dots.length-1)); });
+    }, {passive:true});
+  }
+  dotsFor('rail','dots'); dotsFor('rail2','dots2');
+  // 3D objects drift on scroll
+  var floaters = [].slice.call(document.querySelectorAll('.o3, .obj, .lockrow img, .pull .bubble'));
+  if (!still && floaters.length) {
+    var tick = false;
+    function drift(){
+      tick = false; var vh = window.innerHeight;
+      floaters.forEach(function(el, n){
+        var r = el.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+        var d = (r.top + r.height/2 - vh/2) / vh, k = n % 2 ? 1 : -1;
+        el.style.translate = '0 ' + (d * -34).toFixed(1) + 'px';
+        el.style.rotate = (d * 7 * k).toFixed(2) + 'deg';
+      });
+    }
+    window.addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(drift); } }, {passive:true});
+    drift();
+  }
+})();
+</script>
+</body>
+</html>
