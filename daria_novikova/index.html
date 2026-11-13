@@ -484,6 +484,8 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--li
     }
     paint();
     try { tg.ready(); tg.expand(); } catch(e){}
+    try { tg.disableVerticalSwipes && tg.disableVerticalSwipes(); } catch(e){}
+    try { tg.MainButton.hide(); tg.SecondaryButton && tg.SecondaryButton.hide(); } catch(e){}
     try { tg.onEvent('themeChanged', paint); } catch(e){}
     document.querySelectorAll('a[data-tg]').forEach(function(a){
       a.addEventListener('click', function(e){
