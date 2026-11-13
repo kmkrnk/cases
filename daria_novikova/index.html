@@ -203,11 +203,10 @@ html:not(.js) .rv,html:not(.js) .ph img.scr{opacity:1;transform:none}html:not(.j
 .faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
 .faq details p{margin:0;padding:0 18px 16px;font-size:15px}
 /* sticky cta */
-.stick{position:fixed;left:50%;bottom:calc(14px + var(--sab));transform:translate(-50%,140%);z-index:20;transition:transform .5s cubic-bezier(.2,.7,.2,1);
+.stick{position:fixed;left:50%;bottom:calc(14px + max(var(--sab), var(--tg-safe-area-inset-bottom, 0px)) + var(--tg-content-safe-area-inset-bottom, 0px));transform:translate(-50%,140%);z-index:20;transition:transform .5s cubic-bezier(.2,.7,.2,1);
   padding:15px 26px;border-radius:999px;text-decoration:none;color:#F7EDE4;font-size:16px;font-weight:600;white-space:nowrap;
   background:linear-gradient(180deg,#9a3442,#6e1f2b);box-shadow:0 14px 34px -10px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.2)}
 .stick.show{transform:translate(-50%,0)}
-.tg .stick{display:none}
 /* card-style section backgrounds */
 .bgA,.bgB,.bgC,.bgD{background-repeat:no-repeat;background-size:100% 100%,cover;background-position:center,center top}
 .bgA{background-image:linear-gradient(180deg,var(--bg) 0,rgba(38,27,21,.15) 14%,rgba(38,27,21,.25) 80%,var(--bg) 100%),url(a/secA.webp)}
@@ -497,15 +496,14 @@ hr.sep{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--li
   var CTA='https://t.me/mkrnk_k?text=%D0%9A%D0%95%D0%99%D0%A1', stick=document.getElementById('stick');
   if (isTg) {
     document.documentElement.classList.add('tg');
-    try { tg.MainButton.setParams({text:'Написать «КЕЙС»', color:'#7a2430', text_color:'#F7EDE4'}); tg.MainButton.onClick(function(){ tg.openTelegramLink(CTA); }); } catch(e){}
+    try { tg.MainButton.hide(); } catch(e){}
   }
   var ctaSec = document.querySelector('.cta'), shown=false;
   function upd(){
     var past = window.scrollY > window.innerHeight*0.9, atEnd = ctaSec.getBoundingClientRect().top < window.innerHeight*0.85;
     var want = past && !atEnd;
     if (want === shown) return; shown = want;
-    if (isTg) { try { want ? tg.MainButton.show() : tg.MainButton.hide(); } catch(e){} }
-    else stick.classList.toggle('show', want);
+    stick.classList.toggle('show', want);
   }
   window.addEventListener('scroll', upd, {passive:true}); window.addEventListener('resize', upd); upd();
   // counters
